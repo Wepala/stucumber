@@ -96,6 +96,13 @@ Clause
   / TThen
   / TAnd
   / TStar
+
+DocStringLine
+  = WS line:(string: String ! {return string.value === ('"""')}) NL
+  { return line[0].value }
+
+DocStringMarker
+  = WS TTripleQuote NL
 	
 Examples
   = _ TExamples NL table:Table
@@ -144,6 +151,7 @@ TExamples = "Examples:"
 TTableSep = "|"
 TStar = "*"
 TAt = "@"
+TTripleQuote = "\"\"\""
 
 TTableCell
   = data:[^|\n]+
